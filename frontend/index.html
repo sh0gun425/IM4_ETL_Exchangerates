@@ -3,27 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>RateRover</title>
     <script src="./library/chart.umd.js"></script>
     <script src="./library/moment.js"></script>
     <script src="./library/chartjs-adapter-moment.min.js"></script>
-    
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <main>
+        <section class="section_landing_page">
+            <img src="./img/Rate_Rover_weiss.png" alt="Logo" class="logo-top-right">
+            <div class="wrapper_landing_page">
+                <div id="welcome-text">
+                    <div class="circle_landing_left"></div>
+                    <div class="welcome-text-in-circle">
+                        <h1 id="welcome-text-top">Welcome to the</h1>
+                        <h1 id="welcome-text-bottom">trusted exchange rate service</h1>
+                            <button type="button" class="button-landing-page" onclick="window.location.href='#slider'">
+                                RATES
+                                <img src="./img/Arrow_down.png" alt="arrow-down" width="30px">
+                            </button>
+                    </div>
+                </div>
+                    <div id="todays_exchange_rate">
+                        <div class="currency_input">
+                            <h2>$ Dollar</h2><h2 id="input-dollar-data">-1.3%</h2>
+                        </div>
+                        <div class="currency_input">
+                            <h2>£ Pound</h2><h2 id="input-pound-data">+1.3%</h2>             
+                        </div>
+                        <div class="currency_input">
+                            <h2>€ Euro</h2><h2 id="input-euro-data">+1.3%</h2>               
+                        </div>
+                    </div>
+            </div>
+        </section>
 
-    <h1>Hello World!</h1>
+<!-- SECTION LARS -->
 
-    <select id="currencySelect">
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
-    </select>
+        <section>
+            <div class="wrapper_lars1">
+                <div id="slider">
+                    <div class="bildcontainer">
+                        <img src="./img/Euro.png" class="sliderbild" alt="alternatetext">
+                        <div class="currency-symbol">€</div>
+                        <div class="currency-titel">Euro</div>
+                    </div>
+                    <div class="buttontext">
+                        <button class="button-change-curency_left">
+                            <img src="./img/arrow_left.png" class="nextback" alt="lol">
+                        </button>
+                        <h4 class="change">CHANGE <br>
+                            CURRENCY</h4>
+                        <button class="button-change-curency_right">
+                            <img src="./img/arrow_right.png" class="nextback" alt="lol">
+                        </button>
+                    </div>
+                </div>
+                <div id="text_explain">
+                   <h1 class="titel_lars1">Which Currency it<br>
+                    should be? <br></h1>
+                    <h3 class="fliesstext_lars">Simplify your currency decisions with our intuitive calculator. <br> Convert Swiss Francs (CHF) into your preferred currency effortlessly. Experience convenience and accuracy at your fingertips! Start making smarter currency choices today with RateRover.</h3>
+                </div>
+                <div id="calculator">
+                    <h1>Calculator</h1>
+                    <form action="/action_page.php">
+                        <div class="eingabewaehrung">
+                            <input type="number" placeholder="CHF" class="no-spinners" id="w1" name="waehrung-eins" inputmode="numeric">
+                            <input type="number" placeholder="EUR" class="no-spinners" id="w2" name="waehrung-2" inputmode="numeric" disabled><br>
+                        </div>
+                        <input type="submit" id="B1" value="CALCULATE">
+                    </form>
+                </div>
+            </div>
+        </section>
 
+<!-- SECTION LARS -->
 
-    <canvas id="myChart" width="400" height="400"></canvas>
+        <section>
+            <div class="graph-title">
+            <h1>History of exchange rates</h1>
+            </div>
+            <div class="chart">
+                <canvas id="rateChart"></canvas>
+            </div>
+            <div class="graph-buttons">
+                <button class="button-day-week-month-year" id="button-day">DAY</button>
+                <button class="button-day-week-month-year" id="button-week">WEEK</button>
+                <button class="button-day-week-month-year" id="button-month">MONTH</button>
+
+            </div>
+        </section>
+        <div class="wrapper-buy-sell">
+            <div id="text-sell-or-buy-top-right"><h2>What shows the history<br>about change rates?</h2></div>
+            <div id="text-sell-or-buy"><h3>Explore exchange rate patterns effortlessly with our intuitive chart. Understand market movements and identify the best times to exchange currencies, ensuring smart decisions for your Swiss Franc (CHF) transactions. Gain clarity on when rates are favorable for buying CHF with RateRover's straightforward historical data analysis.</h3></div>
+            </div>
+    </main>
+    <footer>
+        <img src="./img/Rate_Rover_black.png" alt="Logo Rate Rover" width="75px">
+        <h2 class="h2-footer">Project only for study purposes <br> 
+            at the university of applied sciences <br>
+            of the grisons</h2>
+        <h4 class="h4-footer">Nick Watter | Lars Gamper | Joel Monza</h4>
+
+   
 
     <script src="script.js"></script>
-    
+
+    </footer>
 </body>
 </html>
