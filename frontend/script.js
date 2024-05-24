@@ -34,7 +34,6 @@ async function main() {
 
     const ctx = document.getElementById('rateChart').getContext('2d');
     
-
     // Initial currency and chart data
     const initialCurrency = currencies[currentIndex];
     const initialChartData = await fetchChartData(initialCurrency, 'day');
@@ -45,7 +44,7 @@ async function main() {
     const weekButton = document.getElementById('button-week');
     const monthButton = document.getElementById('button-month');
 
-        // Highlight the selected button
+    // Highlight the selected button
     dayButton.classList.add('selected');
 
     dayButton.addEventListener('click', async function() {
@@ -53,7 +52,7 @@ async function main() {
         const chartData = await fetchChartData(currency, 'day');
         updateChart(lineChart, currency, chartData);
 
-        // Highliht the selected button
+        // Highlight the selected button
         dayButton.classList.add('selected');
         weekButton.classList.remove('selected');
         monthButton.classList.remove('selected');
@@ -64,7 +63,7 @@ async function main() {
         const chartData = await fetchChartData(currency, 'week');
         updateChart(lineChart, currency, chartData);
 
-        // Highliht the selected button
+        // Highlight the selected button
         dayButton.classList.remove('selected');
         weekButton.classList.add('selected');
         monthButton.classList.remove('selected');
@@ -75,7 +74,7 @@ async function main() {
         const chartData = await fetchChartData(currency, 'month');
         updateChart(lineChart, currency, chartData);
 
-        // Highliht the selected button
+        // Highlight the selected button
         dayButton.classList.remove('selected');
         weekButton.classList.remove('selected');
         monthButton.classList.add('selected');
@@ -87,33 +86,55 @@ async function main() {
 
     leftArrowButton.addEventListener('click', function() {
         changeCurrency(-1);
+        // Mark the day button as selected when changing currency
+        dayButton.classList.add('selected');
+        weekButton.classList.remove('selected');
+        monthButton.classList.remove('selected');
     });
 
     rightArrowButton.addEventListener('click', function() {
         changeCurrency(1);
+        // Mark the day button as selected when changing currency
+        dayButton.classList.add('selected');
+        weekButton.classList.remove('selected');
+        monthButton.classList.remove('selected');
     });
 
     // Set initial currency
     changeCurrency(currentIndex);
 
-    // Add event listener to the calculate button
-    const calculateButton = document.getElementById('B1');
-    calculateButton.addEventListener('click', async function(event) {
-        event.preventDefault(); // Prevent form submission
+    // Add event listeners to the input fields
+    const chfInput = document.getElementById('w1');
+    const currencyInput = document.getElementById('w2');
 
-        // Get the value of CHF input
-        const chfValue = parseFloat(document.getElementById('w1').value);
-
-        // Fetch the latest exchange rate for the selected currency
+    chfInput.addEventListener('input', async function() {
+        const chfValue = parseFloat(chfInput.value);
+        if (isNaN(chfValue)) {
+            currencyInput.value = '';
+            return;
+        }
+        
         const currencyCode = currencies[currentIndex];
         const exchangeRateData = await fetchLatestCurrencyData();
         const exchangeRate = parseFloat(exchangeRateData[currencyCode]);
-
-        // Perform the currency conversion
+        
         const convertedValue = chfValue * exchangeRate;
+        currencyInput.value = convertedValue.toFixed(2);
+    });
 
-        // Update 
-        document.getElementById('w2').value = convertedValue.toFixed(2);
+    currencyInput.addEventListener('input', async function() {
+        const currencyValue = parseFloat(currencyInput.value);
+        if (isNaN(currencyValue)) {
+            chfInput.value = '';
+            return;
+        }
+
+        const currencyCode = currencies[currentIndex];
+        const exchangeRateData = await fetchLatestCurrencyData();
+        const exchangeRate = parseFloat(exchangeRateData[currencyCode]);
+        
+        const convertedValue = currencyValue / exchangeRate;
+        chfInput.value = convertedValue.toFixed(2);
     });
 }
 
@@ -168,7 +189,21 @@ function createChart(ctx, currency, data) {
             responsive: true,
             plugins: {
                 legend: {
-                    display: false
+                    display: false,
+                    labels: {
+                        color: 'white',
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: `Exchange Rate for ${currency}`,
+                    color: 'white',
+                    font: {
+                        size: 20
+                    }
                 }
             },
             scales: {
@@ -211,6 +246,7 @@ function updateChart(chart, currency, data) {
     chart.data.labels = data.map(item => item.created_at);
     chart.data.datasets[0].data = data.map(item => item.rate);
     chart.data.datasets[0].label = currency;
+    chart.options.plugins.title.text = `Exchange Rate for ${currency}`; // Update chart title
     chart.update();
 }
 

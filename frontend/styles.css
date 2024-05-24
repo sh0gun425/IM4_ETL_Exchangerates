@@ -163,7 +163,6 @@ html {
     text-align: center;
     margin-top: 40px;
     margin-bottom: 40px;
-    padding-top: 40px;
 }
 
 .graph-buttons{
@@ -280,9 +279,6 @@ footer {
       
       #slider {
       grid-area: 1 / 1 / 5 / 2;
-      max-width: 45vw;
-      width: 45vw;
-      padding-top: 60px;
       }
       
       #text_explain {
@@ -306,6 +302,7 @@ footer {
     flex-wrap: nowrap;              
     justify-content: space-between;
     padding: 0 220px;
+    font-size: 80%;
   } 
   
   .button-change-curency_left {
@@ -470,13 +467,209 @@ input[type="submit"] {
 
 
 @media (max-width: 768px) {
-    .buttontext {
-        flex-wrap: wrap;
-    }
+  /* Verstecke den Bereich todays_exchange_rate in der mobilen Ansicht */
+  #todays_exchange_rate {
+      display: none;
+  }
 
-    .button-change-curency_left,
-    .button-change-curency_right {
-        margin-right: 0;
-        margin-bottom: 10px; 
-    }
+  .wrapper_landing_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Align content to the top */
+    align-items: center;
+    height: 100vh; /* Höhe auf volle Höhe des Viewports setzen */
+  }
+
+.circle_landing_left {
+  margin-bottom: 60px; /* Abstand unter dem Kreis */
+  height: 80vw;
+  width: 80vw;
 }
+
+.welcome-text-in-circle{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60%;
+  padding-bottom: 20px;
+}
+
+.button-landing-page {
+    margin-top: 20px; /* Abstand oberhalb des Buttons */
+}
+
+/* Ändere die Position des Logos in der mobilen Ansicht */
+.logo-top-right {
+    max-width: 50px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.wrapper_lars1 {
+  display: grid;
+  grid-template-rows: auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px;
+  margin-top: 10px; /* Abstand zum oberen Rand */
+}
+
+/* Ändere die Position des Texts "Explain" in der mobilen Ansicht */
+#text_explain {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  grid-area: 1 / 1 / 2 / 4; /* Platziere den Text im Raster von Zeile 1 bis Zeile 2 und von Spalte 1 bis Spalte 4 */
+}
+
+
+.fliesstext_lars {
+  font-size: 100%;
+}
+
+#slider {
+  grid-area: 2 / 1 / 3 / 4; /* Platziere den Slider im Raster von Zeile 2 bis Zeile 6 und von Spalte 1 bis Spalte 4 */
+  margin: auto;
+  padding-top: -20px;
+}
+
+.currency-symbol {
+  font-size: 20vh;
+  padding-bottom: 70px;
+}
+
+.bildcontainer {
+  margin: auto;
+}
+
+#calculator {
+  margin: 20px;
+  grid-area: 3 / 1 / 4 / 4; /* Platziere den Calculator im Raster von Zeile 6 bis Zeile 7 und von Spalte 1 bis Spalte 4 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#calculator h1 {
+  text-align: center;
+}
+
+.eingabewaehrung{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#B1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.graph-title{
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 65%; /* Modified size */
+}
+
+.graph-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Decreased the gap between buttons */
+  padding-bottom: 40px;
+}
+.button-day-week-month-year{
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1em; /* Decreased the font size */
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  background-color: var(--footer);
+  color: var(--background-color);
+}
+
+.button-day-week-month-year:hover {
+  background-color: var(#D4DB49);
+  color: var(--background-color);
+  transform: scale(1.1);
+}
+
+#rateChart {
+  width: 90vw;
+  height: 90vw;
+  margin: auto;
+  display: block;
+}
+
+.chart {
+  width: 100vw;
+  height: auto;
+  margin: auto;
+  display: block;
+  margin-bottom: 100px;
+}
+
+  /* Ändere die Größe und Position des Bereichs mit der Graph-Beschreibung in der mobilen Ansicht */
+  .wrapper-buy-sell {
+    display: grid;
+    position: relative;
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+    grid-template-columns: auto; /* Ändere die Definition der Spalten: die erste Spalte nimmt den verfügbaren Platz ein, die zweite Spalte hat eine automatische Breite */
+    grid-template-rows: auto;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+    margin-left: 15vw;
+    margin-right: 15vw;
+  }
+  
+  #text-sell-or-buy-top-right {
+    grid-area: 1 / 1 / 2 / 3;
+    grid-template-columns: auto;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+  }
+
+  #text-sell-or-buy {
+    grid-area: 2 / 1 / 3 / 3;
+    justify-items: center;
+    font-size: 0.8em; /* Decrease the font size */
+    text-align: center;
+  }
+
+
+  /* Ändere die Größe und Position des Graphen in der mobilen Ansicht */
+
+
+  /* Ändere die Größe der Bilder in der mobilen Ansicht */
+  .sliderbild {
+      max-width: 200px;
+      height: auto;
+  }
+
+  /* Ändere die Größe und Position des Currency Wechslers in der mobilen Ansicht */
+  .buttontext {
+      padding: 0 20px;
+  }
+
+  /* Ändere die Größe und Position des Calculators in der mobilen Ansicht */
+  #calculator {
+      margin: 20px;
+  }
+
+  .h2-footer {
+    font-size: 1.5em; /* Decrease the font size */
+  }
+
+}
+
